@@ -20,7 +20,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'GET') {
 
 // Проверяем ошибки.
 $errors = FALSE;
-if (empty($_POST['user_name"'])) {
+if (empty($_POST['user_name'])) {
   print('Заполните имя.<br/>');
   $errors = TRUE;
 }
@@ -79,7 +79,7 @@ $db = new PDO('mysql:host=localhost;dbname=u52839', $user, $pass, [PDO::ATTR_PER
 // Подготовленный запрос. Не именованные метки.
 try {
   $stmt = $db->prepare("INSERT INTO application SET name = ?");
-  $stmt -> execute(['fio']);
+  $stmt -> execute(['user_name']);
 }
 catch(PDOException $e){
   print('Error : ' . $e->getMessage());
@@ -95,20 +95,20 @@ try {
     $stmt->bindParam(':limbs', $limbs);
     $stmt->bindParam(':biography', $biography);
   
-    $name = $_POST['fio'];
-    $email = $_POST['email'];
-    $year = $_POST['year'];
-    $gender = $_POST['r1'][0];
-    $limbs = $_POST['r2'][0];
-    $biography = $_POST['biography'];
+    $name = $_POST['user_name'];
+    $email = $_POST['user_mail'];
+    $year = $_POST['user_birth'];
+    $gender = $_POST['user_gender'][0];
+    $limbs = $_POST['user_limb'][0];
+    $biography = $_POST['user_bio'];
   
     $stmt->execute();
-    $dbh = new PDO('mysql:host=localhost;dbname=u45960', $user, $pass);
+    $dbh = new PDO('mysql:host=localhost;dbname=u52839', $user, $pass);
     $last_id = $db->lastInsertId();
   
     $stmt = $db->prepare("INSERT INTO abilities (id, ability) VALUES (:id, :ability)");
     
-    foreach($_POST['abilities'] as $abil) {
+    foreach($_POST['superpowers'] as $abil) {
       $stmt->bindParam(':id', $id);
       $stmt->bindParam(':ability', $ability);
       $id = $last_id;

@@ -1,30 +1,21 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <link rel="stylesheet" href="./style.css">
-  <script src="./myScript.js"></script>
-  <title>thirdTask</title>
-</head>
-<body>
-  <div class="main-content">
-    <div class="under-form">
-      <div class="form">
-        <form action="" method="POST" class="user-form" id="user-form">
+<form action="" method="POST" class="user-form" id="user-form">
           <h2 class="header-user-form">Create an account</h2>
           <div class="user-name-field users-fields">
             <label>enter your full name*</label>
-            <input placeholder="your full name" type="text" name="user_name" id="user-name">
+            <input type="text" name="user_name" id="user-name">
           </div>
           <div class="user-email-field users-fields">
             <label>enter your email*</label>
-            <input placeholder="your email" type="email" name="user_mail" id="user-mail">
+            <input type="email" name="user_mail" id="user-mail">
           </div>
           <div class="user-bday-field users-fields">
-            <label>select year of your birth*</label>
+            <label>enter your birthday*</label>
             <select name="user_birth" id="user-birth">
-              <option value="1923">1923 year</option>
-              <option value="2023">2023 year</option>
+              <?php
+                  for ($i = 1923; $i <= 2023; $i++) {
+                    printf('<option value="%d">%d year</option>', $i, $i);
+                  }
+                  ?>
             </select>
           </div>
           <div class="input-gender users-fields">
@@ -44,13 +35,12 @@
             <select name="superpowers" id="superpowers-select" multiple>
               <option value="invisibility">invisibility</option>
               <option value="flight">flight</option>
-              <option value="immortality">immortality</option>
-              <option value="man">man (all in one)</option>
+              <option value="power">power</option>
             </select>
           </div>
           <div class="user-bio-field users-fields">
             <label>enter your biography*</label>
-            <textarea placeholder="your biography" name="user_bio" id="user-bio" cols="20" rows="1"></textarea>
+            <textarea name="user-bio" id="user-bio" cols="20" rows="1"></textarea>
           </div>
           <div class="contract-checkbox users-fields">
             <input type="checkbox" name="accept_contract" id="accept-contract">
@@ -60,12 +50,3 @@
             <button id="submit-button" type="submit">submit</button>
           </div>
         </form>
-      </div>
-    </div>
-    <div class="wave"></div>
-    <div class="wave"></div>
-    <div class="wave"></div>
-  </div>
-
-</body>
-</html>
